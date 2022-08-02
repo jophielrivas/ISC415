@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layout.html}">
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/formulario}">Formulario</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/encuestadores">Encuestadores</a>
+                </li>
+                <li>
+                    <a href="/listaFormularios">Encuestas</a>
+                </li>
+                <li>
+                    <a href="/login">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class = "container" style="padding-top:50px;">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Formulario </h1>
+            <form th:action="@{/formulario}" th:object = "${formulario}" method="POST">
+
+                <div class ="form-group">
+                <label> Nombre </label>
+                <input
+                        type = "text"
+                        name = "nombre"
+                        th:field = "*{nombre}"
+                        class = "form-control"
+                        placeholder="Introduzca su nombre y apellido"
+                />
+                </div>
+
+            <div class ="form-group">
+                <label> Numero </label>
+                <input
+                        type = "text"
+                        name = "sector"
+                        th:field = "*{sector}"
+                        class = "form-control"
+                        placeholder="Introduzca el sector"
+                />
+            </div>
+
+                <div class ="form-group">
+                <label for="nivel">Elija un grado de estudio:</label>
+                <select name="nivel" id="nivel" th:field="*{nivelEscolar}">
+                    <option value="basico">Basico</option>
+                    <option value="medio">Medio</option>
+                    <option value="universitario">Grado Universitario</option>
+                    <option value="postgrado">Postgrado</option>
+                    <option value="doctorado">Doctorado</option>
+                </select>
+                </div>
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Agregar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
