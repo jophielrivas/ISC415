@@ -42,7 +42,7 @@ public class Main {
                 for(int i = 0; i < encuestadores.length; i++) {
                     if(encuestadores[i].getUserName().equals(usuario)) {
                         ctx.cookie("id",  String.valueOf(encuestadores[i].getId()));
-                        ctx.cookie("", usuario);
+                        ctx.cookie("rol", String.valueOf(encuestadores[i].isRole()));
                     }
                 }
             }else {
@@ -67,9 +67,9 @@ public class Main {
             String nombre = ctx.formParam("nombre");
             String sector = ctx.formParam("sector");
             String nivel = ctx.formParam("nivel");
-            int id_encuestador = 0;
-            double latitud = 0;
-            double longitud = 0;
+            int id_encuestador = Integer.parseInt(ctx.cookie("id"));
+            double latitud = Double.parseDouble(ctx.formParam("latitud"));
+            double longitud = Double.parseDouble(ctx.formParam("longitud"));
 
             Formulario encuestado = new Formulario(0,nombre,sector,nivel,id_encuestador,latitud,longitud);
             handler.HandlerHTTPEnviarEncuesta(new Gson().toJson(encuestado));

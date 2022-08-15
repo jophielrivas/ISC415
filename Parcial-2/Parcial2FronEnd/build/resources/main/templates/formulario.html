@@ -54,6 +54,7 @@
                         th:field = "*{nombre}"
                         class = "form-control"
                         placeholder="Introduzca su nombre y apellido"
+                        required
                 />
                 </div>
 
@@ -65,6 +66,7 @@
                         th:field = "*{sector}"
                         class = "form-control"
                         placeholder="Introduzca el sector"
+                        required
                 />
             </div>
 
@@ -78,6 +80,54 @@
                     <option value="doctorado">Doctorado</option>
                 </select>
                 </div>
+
+                <div id="map" class="map"></div>
+                <script type="text/javascript">
+                        if('geolocation' in navigator){
+
+                            navigator.geolocation.getCurrentPosition(position=>{
+
+                                document.getElementById("lat").innerHTML = position.coords.latitude;
+
+                                document.getElementById("lon").innerHTML = position.coords.longitude;
+
+                            }, error=>{
+
+                                console.log(error.code);
+
+                            });
+
+                        }else{
+
+                            console.log("Not Supported");
+
+                        };
+                </script>
+
+                <button id="getlocation" type="button">Coordenadas</button>
+
+                <div class ="form-group">
+                    <label> Latitud </label>
+                    <label
+                            id = "lat"
+                            type = "text"
+                            name = "sector"
+                            th:field = "*{latitud}"
+                            class = "form-control"
+                    </label>
+                </div>
+
+                <div class ="form-group">
+                    <label> Longitud </label>
+                    <label
+                            id = "lon"
+                            type = "text"
+                            name = "sector"
+                            th:field = "*{longitud}"
+                            class = "form-control"
+                    </label>
+                </div>
+
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">
                             Agregar
